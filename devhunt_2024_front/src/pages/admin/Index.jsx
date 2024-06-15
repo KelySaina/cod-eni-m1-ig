@@ -25,7 +25,7 @@ const Index = () => {
     }, [])
     return (
         <div className='grid grid-cols-8'>
-            <div className='col-span-1 space-y-24 shadow-lg h-screen'>
+            <div className='col-span-1 space-y-16 shadow-lg h-screen'>
                 <div className='flex flex-col gap-8 justify-center items-center h-[20%] mt-8'>
                     <svg className='w-28 fill-success' viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none">
                         <path fillRule="evenodd"
@@ -67,11 +67,22 @@ const Index = () => {
                             </>
                     }
                 </div>
-                <div onClick={handleLogtOut} className='flex items-center gap-5 justify-center cursor-pointer hover:text-error hover:scale-110 duration-100'>
-                    <label className='text font-semibold cursor-pointer'>Déconnexion</label>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-7">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-                    </svg>
+                <div className='space-y-2'>
+                    {
+                        !isSuper
+                        &&
+                        <div className='text-center flex flex-col'>
+                            <label>{JSON.parse(localStorage.getItem('user')).username}</label>
+                            <label className='text-xs'>{JSON.parse(localStorage.getItem('user')).email}</label>
+                        </div>
+                    }
+                    <hr />
+                    <div onClick={handleLogtOut} className='flex items-center gap-5 justify-center cursor-pointer hover:text-error hover:scale-110 duration-100'>
+                        <label className='text font-semibold cursor-pointer'>Déconnexion</label>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-7">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                        </svg>
+                    </div>
                 </div>
             </div>
             <div className='col-span-7 p-8'>
